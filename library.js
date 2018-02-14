@@ -45,8 +45,6 @@ var printPlaylists = function() {
 
 console.log(printPlaylists());
 
-
-
 // prints a list of all tracks, in the form:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
@@ -78,59 +76,72 @@ var printPlaylist = function(playListId) {
 
 	//gets playlist info
 	var playId = playListId;
-	var id = library.playlists[playId].id;
-	var name = library.playlists[playId].name;
-	var tracks = library.playlists[playId].tracks;
+	var pId = library.playlists[playId].id;
+	var pName = library.playlists[playId].name;
+	var pTracks = library.playlists[playId].tracks;
 
 	//gets tracklist
 	var trackList = [];
-	for (var i = 0; i < tracks.length; i++) {
-		if (tracks[i] ===  library.tracks[tracks[i]].id) {
-			trackList.push(tracks[i]);
+	for (var i = 0; i < pTracks.length; i++) {
+		if (pTracks[i] ===  library.tracks[pTracks[i]].id) {
+			trackList.push(pTracks[i]);
+
 		}
+
 	}
+
 	// gets track info
+	var trackInfo = '';
+	for (var j = 0; j < trackList.length; j++) {
+		var tId = library.tracks[trackList[j]].id;
+		var tName = library.tracks[trackList[j]].name;
+		var tArtist = library.tracks[trackList[j]].artist;
+		var tAlbum = library.tracks[trackList[j]].album;
+
+    trackInfo += tId + ': ' + tName + 'by ' + tArtist + ' (' + tAlbum +')' + '\n'
+	}
+  return pId + ' ' + pName + ' - ' + pTracks.length + ' tracks' + '\n' + trackInfo
 
 };
-
+//
 console.log(printPlaylist('p01'));
-
-
-// adds an existing track to an existing playlist
-
-var addTrackToPlaylist = function (trackId, playlistId) {
-
-};
-
-
-// generates a unique id
-// (use this for addTrack and addPlaylist)
-
-var uid = function() {
-	return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-};
-
-
-// adds a track to the library
-
-var addTrack = function (name, artist, album) {
-
-};
-
-
-// adds a playlist to the library
-
-var addPlaylist = function (name) {
-
-};
-
-
-// STRETCH:
-// given a query string string, prints a list of tracks
-// where the name, artist or album contains the query string (case insensitive)
-// tip: use "string".search("tri")
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-
-var printSearchResults = function(query) {
-
-};
+//
+//
+// // adds an existing track to an existing playlist
+//
+// var addTrackToPlaylist = function (trackId, playlistId) {
+//
+// };
+//
+//
+// // generates a unique id
+// // (use this for addTrack and addPlaylist)
+//
+// var uid = function() {
+// 	return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+// };
+//
+//
+// // adds a track to the library
+//
+// var addTrack = function (name, artist, album) {
+//
+// };
+//
+//
+// // adds a playlist to the library
+//
+// var addPlaylist = function (name) {
+//
+// };
+//
+//
+// // STRETCH:
+// // given a query string string, prints a list of tracks
+// // where the name, artist or album contains the query string (case insensitive)
+// // tip: use "string".search("tri")
+// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
+//
+// var printSearchResults = function(query) {
+//
+// };
