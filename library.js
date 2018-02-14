@@ -73,34 +73,20 @@ console.log(printTracks())
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
-// var printPlaylist = function (playlistId) {
-//   var printTrackList = '';
-//
-//   for (var printPlay in library.playlists){
-//       var id = library.playlists[printPlay].id
-//       var name = library.playlists[printPlay].name
-//       var tracks = library.playlists[printPlay].tracks
-//
-//       playlistList += id +': ' + name + " - " + tracks.length + ' tracks' + '\n'
-//       var trackList = '';
-//
-//       for (var tList in library.tracks){
-//           var id = library.tracks[tList].id
-//           var name = library.tracks[tList].name
-//           var artist = library.tracks[tList].artist
-//           var album = library.tracks[tList].album
-//
-//           trackList += id +': ' + name + ' by ' + artist + ' ' + album + ' tracks' + '\n'
-//         }
-//
-//         return trackList
-//     }
-//     }
-//
-//     return playlistList
-//
-//
-// console.log(printPlaylist())
+
+var printPlaylist = function(playListId) {
+
+    var playId = playListId
+        var id = library.playlists[playId].id
+        console.log(id);
+        var tracks = library.playlists[playId].tracks
+        console.log(tracks);
+        var name = library.playlists[playId].name
+        console.log(name);
+
+    }
+
+console.log(printPlaylist('p01'))
 
 
 // adds an existing track to an existing playlist
