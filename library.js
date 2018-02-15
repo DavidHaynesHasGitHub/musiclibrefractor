@@ -39,7 +39,6 @@ var printPlaylists = function() {
 
 		playlistList += id +': ' + name + ' - ' + tracks.length + ' tracks' + '\n';
 	}
-
 	return playlistList;
 };
 
@@ -58,10 +57,8 @@ var printTracks = function () {
 		var name = library.tracks[tList].name;
 		var artist = library.tracks[tList].artist;
 		var album = library.tracks[tList].album;
-
 		trackList += id +': ' + name + ' by ' + artist + ' ' + album + ' tracks' + '\n';
 	}
-
 	return trackList;
 };
 console.log(printTracks());
@@ -73,23 +70,18 @@ console.log(printTracks());
 
 
 var printPlaylist = function(playListId) {
-
 	//gets playlist info
 	var playId = playListId;
 	var pId = library.playlists[playId].id;
 	var pName = library.playlists[playId].name;
 	var pTracks = library.playlists[playId].tracks;
-
 	//gets tracklist
 	var trackList = [];
 	for (var i = 0; i < pTracks.length; i++) {
 		if (pTracks[i] ===  library.tracks[pTracks[i]].id) {
 			trackList.push(pTracks[i]);
-
 		}
-
 	}
-
 	// gets track info
 	var trackInfo = '';
 	for (var j = 0; j < trackList.length; j++) {
@@ -98,44 +90,76 @@ var printPlaylist = function(playListId) {
 		var tArtist = library.tracks[trackList[j]].artist;
 		var tAlbum = library.tracks[trackList[j]].album;
 
-    trackInfo += tId + ': ' + tName + 'by ' + tArtist + ' (' + tAlbum +')' + '\n'
+		trackInfo += tId + ': ' + tName + 'by ' + tArtist + ' (' + tAlbum +')' + '\n';
 	}
-  return pId + ' ' + pName + ' - ' + pTracks.length + ' tracks' + '\n' + trackInfo
-
+	return pId + ' ' + pName + ' - ' + pTracks.length + ' tracks' + '\n' + trackInfo;
 };
 //
 console.log(printPlaylist('p01'));
 //
 //
-// // adds an existing track to an existing playlist
-//
-// var addTrackToPlaylist = function (trackId, playlistId) {
-//
-// };
+// adds an existing track to an existing playlist
+
+var addTrackToPlaylist = function (trackId, playlistId) {
+
+
+	var tId = trackId;
+	var playId = playlistId;
+	library.playlists[playId].tracks.push(tId);
+	console.log(library.playlists[playId].tracks);
+
+};
+(addTrackToPlaylist('t03', 'p01'));
 //
 //
 // // generates a unique id
 // // (use this for addTrack and addPlaylist)
 //
-// var uid = function() {
-// 	return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-// };
+var uid = function() {
+	Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+};
 //
 //
-// // adds a track to the library
-//
-// var addTrack = function (name, artist, album) {
-//
-// };
-//
-//
-// // adds a playlist to the library
-//
-// var addPlaylist = function (name) {
-//
-// };
-//
-//
+// adds a track to the library
+
+var addTrack = function (name, artist, album, tracks){
+  var uid = function() {
+  	Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  };
+  var newTrackId = uid
+  var newTrack = { newTrackId :{
+  id: uid,
+  name: name,
+  artist: artist,
+  tracks: tracks,
+},
+};
+
+
+  library.tracks = Object.assign(library.tracks,newTrack)
+  console.log(library.tracks);
+};
+addTrack('Chordney Love', 'Noize Generation', 'Ghetto Rave');
+
+// adds a playlist to the library
+
+var addPlaylist = function (name) {
+  var uid = function() {
+  	Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  };
+  var newPlayId = uid
+  var newPlay = { newPlayId :{
+  id: uid,
+  name: name,
+},
+};
+
+  library.playlists = Object.assign(library.playlists,newPlay)
+  console.log(library.playlists);
+};
+addPlaylist('Help');
+
+
 // // STRETCH:
 // // given a query string string, prints a list of tracks
 // // where the name, artist or album contains the query string (case insensitive)
